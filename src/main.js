@@ -6,6 +6,9 @@ import store from './vueStore/index.js'
 import 'mint-ui/lib/style.css'
 import MintUI from 'mint-ui'
 
+import './assets/font/font-awesome.css'
+import './assets/font/iconfont.js'
+
 
 import axios from 'axios'
 import config from './api/config'

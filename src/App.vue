@@ -1,23 +1,9 @@
 <template>
     <div id="app">
-        <mt-tabbar v-model="selected">
-            <mt-tab-item id="外卖">
-                <img slot="icon" src="./assets/logo.png">
-                外卖
-            </mt-tab-item>
-            <mt-tab-item id="订单">
-                <img slot="icon" src="./assets/logo.png">
-                订单
-            </mt-tab-item>
-            <mt-tab-item id="发现">
-                <img slot="icon" src="./assets/logo.png">
-                发现
-            </mt-tab-item>
-            <mt-tab-item id="我的">
-                <img slot="icon" src="./assets/logo.png">
-                我的
-            </mt-tab-item>
-        </mt-tabbar>
+        <router-link class="page-back" v-if="visible" :to="'/'">
+            <i class="mintui mintui-back"></i>
+        </router-link>
+        <router-view></router-view>
     </div>
 </template>
 
@@ -26,22 +12,54 @@
     export default {
         data() {
             return {
-                selected:''
+                selected: ''
             }
         },
-        methods: {
-
-        },
-        components: {
-
-        },
+        methods: {},
+        components: {},
         mounted() {
+        },
+        computed: {
+            visible() {
+                //return ['/', '/header', '/search'].indexOf(this.$route.path) < 0;
+                return false;
+            }
         }
     }
 </script>
 
-<style>
+<style >
     body {
         font-family: Helvetica, sans-serif;
+        padding: 0;
+        margin: 0 auto;
+        background: #fbf6ef;
+    }
+
+    .icon {
+        width: 1em; height: 1em;
+        vertical-align: -0.15em;
+        fill: currentColor;
+        overflow: hidden;
+    }
+
+    a {
+        color: inherit;
+        font-style: normal;
+        text-decoration:none;
+    }
+
+    .page-back {
+        display: inline-block;
+        position: absolute 12px * * 10px;
+        width: 40px;
+        height: 40px;
+        text-align: center;
+
+    i {
+        font-size: 24px;
+        line-height: 40px;
+    }
+
     }
 </style>
