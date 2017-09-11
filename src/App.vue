@@ -1,8 +1,10 @@
 <template>
-    <div id="app">
-        <router-link class="page-back" v-if="visible" :to="'/'">
-            <i class="mintui mintui-back"></i>
-        </router-link>
+    <div>
+        <mt-header title="标题" v-if="visible">
+            <router-link to="/home" slot="left">
+                <mt-button icon="back">返回</mt-button>
+            </router-link>
+        </mt-header>
         <router-view></router-view>
     </div>
 </template>
@@ -21,45 +23,28 @@
         },
         computed: {
             visible() {
-                //return ['/', '/header', '/search'].indexOf(this.$route.path) < 0;
-                return false;
+                return ['/',`/home`].indexOf(this.$route.path) < 0;
             }
         }
     }
+
+    Date.prototype.Format = function(fmt)
+    {
+        var o = {
+            "M+" : this.getMonth()+1,                 //月份
+            "d+" : this.getDate(),                    //日
+            "h+" : this.getHours(),                   //小时
+            "m+" : this.getMinutes(),                 //分
+            "s+" : this.getSeconds(),                 //秒
+            "q+" : Math.floor((this.getMonth()+3)/3), //季度
+            "S"  : this.getMilliseconds()             //毫秒
+        };
+        if(/(y+)/.test(fmt))
+            fmt=fmt.replace(RegExp.$1, (this.getFullYear()+"").substr(4 - RegExp.$1.length));
+        for(var k in o)
+            if(new RegExp("("+ k +")").test(fmt))
+                fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));
+        return fmt;
+    }
 </script>
 
-<style >
-    body {
-        font-family: Helvetica, sans-serif;
-        padding: 0;
-        margin: 0 auto;
-        background: #fbf6ef;
-    }
-
-    .icon {
-        width: 1em; height: 1em;
-        vertical-align: -0.15em;
-        fill: currentColor;
-        overflow: hidden;
-    }
-
-    a {
-        color: inherit;
-        font-style: normal;
-        text-decoration:none;
-    }
-
-    .page-back {
-        display: inline-block;
-        position: absolute 12px * * 10px;
-        width: 40px;
-        height: 40px;
-        text-align: center;
-
-    i {
-        font-size: 24px;
-        line-height: 40px;
-    }
-
-    }
-</style>

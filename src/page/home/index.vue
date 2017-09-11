@@ -8,8 +8,8 @@
         <!--</label>-->
         <mt-swipe :auto="5000">
             <mt-swipe-item class="slide1">1</mt-swipe-item>
-            <!--<mt-swipe-item class="slide2">2</mt-swipe-item>-->
-            <!--<mt-swipe-item class="slide3">3</mt-swipe-item>-->
+            <mt-swipe-item class="slide2">2</mt-swipe-item>
+            <mt-swipe-item class="slide3">3</mt-swipe-item>
         </mt-swipe>
 
         <div id="meun">
@@ -34,10 +34,33 @@
         components:{
             shortcutMeun
         },
-        mounted(){
-            let $ = this.$jquery;
-            let boxW = $('.box').width();
-            $('.box').css({height:boxW+'px'})
-        }
+        created() {
+            let vm = this;
+            this.$ajax.interceptors.request.use(function (config) {
+                //在请求发出之前进行一些操作
+                let token = vm.$localStore.get('token');
+                if (token) {
+                    config.headers.token = token;
+                }else {
+
+                }
+                return config;
+            }, function (err) {
+                //Do something with request error
+                return Promise.reject(err);
+            });
+
+            this.$ajax.interceptors.response.use(function (res) {
+                //在这里对返回的数据进行处理
+                if (Number(res.data.errno) == 1000) {
+                    vm.$router.replace('/')
+                    return;
+                }
+                return res;
+            }, function (err) {
+                //Do something with response error
+                return Promise.reject(err);
+            })
+        },
     }
 </script>

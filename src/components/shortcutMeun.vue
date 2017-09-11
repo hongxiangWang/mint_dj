@@ -18,7 +18,7 @@
                 meuns: [
 
                     {
-                        label: '新增活动', icon: 'fa-futbol-o', to: 'recordAdd', btnBg: 'button-action'
+                        label: '通知公告', icon: 'fa-bullhorn', to: 'recordAdd', btnBg: 'button-action'
                     },
                     {
                         label: '新增计划', icon: 'fa-bookmark', to: 'planAdd', btnBg: 'button-action'
@@ -44,7 +44,7 @@
         },
         methods: {
             cellBtn(item) {
-                this.$router.push('/home/' + item.to)
+                this.$router.push( item.to)
             }
 
         },
