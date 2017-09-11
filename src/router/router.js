@@ -14,14 +14,13 @@ export default [{
         component: home,
         children:[
             {
-                path: '/main',
+                path: 'main',
                 name:'main',
                 // 使用vue-route + Webpack 的 code splitting feature 把组件按组分块
                 component: main
             },
             {
-                path: '/recordAdd',
-                name:'recordAdd',
+                path: 'recordAdd',
                 component: recordAdd,
             },
         ]

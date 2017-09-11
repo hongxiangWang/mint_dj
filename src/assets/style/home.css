@@ -27,7 +27,7 @@
   background-color: #ff2d4b;
   color: #fff;
 }
-#home #meun {
+#home #menu {
   padding: 0px 10px;
 }
 #home .box {
@@ -41,4 +41,18 @@
   margin-left: 10px;
   margin-top: 20px;
   vertical-align: middle;
+}
+#home #bottom {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  /* Rectangle 7: */
+  box-shadow: 0 -1px 2px 0 rgba(127, 127, 127, 0.38);
+  font-size: 12px;
+  height: 28px;
+  line-height: 28px;
+}
+#home #bottom svg {
+  color: #E64A19;
 }
