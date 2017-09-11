@@ -53,7 +53,7 @@
             this.$ajax.interceptors.response.use(function (res) {
                 //在这里对返回的数据进行处理
                 if (Number(res.data.errno) == 1000) {
-                    vm.$router.replace('/')
+                    vm.$router.replace('/');
                     return;
                 }
                 return res;
