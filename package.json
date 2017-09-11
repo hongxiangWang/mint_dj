@@ -8,8 +8,9 @@
     "build": "rimraf dist && webpack -p --progress --hide-modules"
   },
   "dependencies": {
-    "mint-ui":"^2.2.9",
     "axios": "^0.15.3",
+    "element-ui": "^1.4.4",
+    "mint-ui": "^2.2.9",
     "vue": "^2.4.2",
     "vue-router": "^2.5.3",
     "vuex": "^2.0.0"
@@ -35,7 +36,7 @@
     "webpack-dev-server": "^2.4.2",
     "less": "^2.7.1",
     "less-loader": "^2.2.3",
-    "store":"^2.0.4",
+    "store": "^2.0.4",
     "jquery": "^3.2.1"
   }
 }
