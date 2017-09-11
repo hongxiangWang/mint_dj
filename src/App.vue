@@ -1,16 +1,10 @@
 <template>
-    <div>
-        <mt-header title="标题" v-if="visible">
-            <router-link to="/home" slot="left">
-                <mt-button icon="back">返回</mt-button>
-            </router-link>
-        </mt-header>
+    <div id="app">
         <router-view></router-view>
     </div>
 </template>
 
 <script>
-
     export default {
         data() {
             return {
