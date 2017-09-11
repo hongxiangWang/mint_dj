@@ -1,0 +1,20 @@
+#shortcutMeun {
+  width: 100%;
+  height: auto;
+  margin: 10px auto;
+  text-align: justify;
+  padding: 0px 0px;
+  z-index: 1;
+}
+#shortcutMeun .cell {
+  width: 33%;
+  text-align: center;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+#shortcutMeun .cell button {
+  margin: 0 13px;
+}
+#shortcutMeun .cell p {
+  margin: 8px auto;
+}
