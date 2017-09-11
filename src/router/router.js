@@ -4,9 +4,9 @@ const main = r => require.ensure([], () => r(require('../page/home/main.vue')), 
 const recordAdd = r => require.ensure([], () => r(require('../page/activity/recordAdd.vue')), 'recordAdd');
 const login = r => require.ensure([], () => r(require('../page/login/index.vue')), 'login');
 export default [{
-    path: '/index',
-    component: App,
-    name: 'index'
+        path: '/index',
+        component: App,
+        name: 'index'
     },
     {
         path: '/home',
@@ -15,6 +15,7 @@ export default [{
         children:[
             {
                 path: 'main',
+                name:'main',
                 // 使用vue-route + Webpack 的 code splitting feature 把组件按组分块
                 component: main
             },
