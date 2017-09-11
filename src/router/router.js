@@ -19,7 +19,7 @@ export default [{
                 component: main
             },
             {
-                path: '/recordAdd',
+                path: 'recordAdd',
                 component: recordAdd,
             },
         ]

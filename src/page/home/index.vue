@@ -14,7 +14,7 @@
             </div>
         </mt-header>
 
-        <router-view ref="main" style="margin:10px 0px;"></router-view>
+        <router-view ref="main" style="margin:0px 0px;"></router-view>
 
         <div id="bottom">
             <small>
@@ -27,21 +27,22 @@
 </template>
 <script>
     import '../../assets/style/home.less';
+
     export default {
         data() {
             return {
-                people_info:this.$localStore.get('people_info')
+                people_info: this.$localStore.get('people_info')
             }
         },
-        computed:{
-            actionInfo(){
+        computed: {
+            actionInfo() {
                 let welcome_str = '';
-                let roleName='';
+                let roleName = '';
                 let is_login = '';
-                if(this.people_info!=null){
+                if (this.people_info != null) {
                     let user_info = this.people_info[0];
-                    welcome_str = '欢迎您，'+user_info.people_name;
-                    switch(user_info.role_id){
+                    welcome_str = '欢迎您，' + user_info.people_name;
+                    switch (user_info.role_id) {
                         case 1:
                             roleName = '[超级管理员]';
                             break;
@@ -54,20 +55,20 @@
                         default:
                             roleName = '未知';
                     }
-                    welcome_str+=' '+roleName;
+                    welcome_str += ' ' + roleName;
                     is_login = true;
-                }else{
+                } else {
                     welcome_str = '管理员请登陆';
                     is_login = false;
                 }
-                return {welcome_str,is_login};
+                return {welcome_str, is_login};
             }
         },
-        methods:{
-            signin(){
-              this.$router.replace('/');
+        methods: {
+            signin() {
+                this.$router.replace('/');
             },
-            logout(){
+            logout() {
                 //localStorage清空
                 this.$localStore.clearAll();
                 this.$router.replace('/');
@@ -81,7 +82,7 @@
                 let token = vm.$localStore.get('token');
                 if (token) {
                     config.headers.token = token;
-                }else {
+                } else {
 
                 }
                 return config;
@@ -102,8 +103,8 @@
                 return Promise.reject(err);
             });
         },
-        mounted(){
-
+        mounted() {
+            this.$router.push('/home/main')
         }
     }
 </script>
