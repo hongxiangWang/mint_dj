@@ -1,7 +1,7 @@
 <template>
     <div id="home">
         <mt-header :title="actionInfo.welcome_str" style="margin-bottom:0px">
-            <router-link to="/home" slot="left">
+            <router-link to="/home/main" slot="left">
                 <mt-button icon="back">返回</mt-button>
             </router-link>
             <div slot="right">
@@ -104,7 +104,7 @@
             });
         },
         mounted() {
-            this.$router.push('/home/main')
+            //this.$router.push('/home/main');
         }
     }
 </script>

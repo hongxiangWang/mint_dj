@@ -65,7 +65,7 @@
                             if (response.data.errno == 0) {
                                 getAccount(this, response.data.data);
                                 this.$message({message:'登陆成功，即将跳转',type:'success',onClose(em){
-                                    that.$router.replace('/home');
+                                    that.$router.replace('/home/main');
                                 }});
                             } else {
                                 this.$message({message: response.data.errmsg, type: 'error'});
