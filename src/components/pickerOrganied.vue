@@ -52,6 +52,7 @@
                     if (v != undefined) {
                         this.pickerSeletVuale += v.dept_name + " ";
                         this.pickerSubmit = v.id;
+                        this.pickerLastlabel = v.dept_name;
                     }
 
                 })
@@ -62,7 +63,7 @@
                 this.$emit('cancel');
             },
             submit(){
-                this.$emit('submit',);
+                this.$emit('submit',{label:this.pickerLastlabel,value:this.pickerSubmit});
             }
         },
 
@@ -97,6 +98,7 @@
                     }
                 ],
                 pickerSeletVuale: '',
+                pickerLastlabel:'',
                 oData: {},
                 pickerSubmit:''
             };

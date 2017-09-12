@@ -1,6 +1,6 @@
 <template>
     <div id="home">
-        <mt-header fixed :title="actionInfo.welcome_str" style="margin-bottom:0px">
+        <mt-header fixed :title="actionInfo.welcome_str" style="margin-bottom:0px" ref="header">
             <div slot="left" @click="go_back_url()" v-if="is_index">
                 <mt-button icon="back">返回</mt-button>
             </div>
