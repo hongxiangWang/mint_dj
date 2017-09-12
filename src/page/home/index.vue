@@ -1,9 +1,9 @@
 <template>
     <div id="home">
-        <mt-header :title="actionInfo.welcome_str" style="margin-bottom:0px">
-            <router-link to="/home/main" slot="left">
+        <mt-header fixed :title="actionInfo.welcome_str" style="margin-bottom:0px">
+            <div slot="left" @click="go_back_url()" v-if="is_index">
                 <mt-button icon="back">返回</mt-button>
-            </router-link>
+            </div>
             <div slot="right">
                 <span v-if="actionInfo.is_login">
                     <mt-button @click='logout'><i class="fa fa-sign-out"></i> 退出</mt-button>
@@ -13,9 +13,9 @@
                 </span>
             </div>
         </mt-header>
-
-        <router-view ref="main" style="margin:0px 0px;"></router-view>
-
+        <div class="router_view_box">
+            <router-view ref="main" style="margin:0px 0px;"></router-view>
+        </div>
         <div id="bottom">
             <small>
                 <svg class="icon" aria-hidden="true">
@@ -62,9 +62,18 @@
                     is_login = false;
                 }
                 return {welcome_str, is_login};
+            },
+            is_index(){
+                if (this.$route.path == '/home/main') {
+                    return false;
+                }
+                return true;
             }
         },
         methods: {
+            go_back_url(){
+                this.$router.go(-1);
+            },
             signin() {
                 this.$router.replace('/');
             },
@@ -104,6 +113,7 @@
             });
         },
         mounted() {
+            console.log(this.$route);
             //this.$router.push('/home/main');
         }
     }
