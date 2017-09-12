@@ -2,6 +2,11 @@ const App = r => require.ensure([], () => r(require('../App.vue')), 'App');
 const home = r => require.ensure([], () => r(require('../page/home/index.vue')), 'home');
 const main = r => require.ensure([], () => r(require('../page/home/main.vue')), 'main');
 const recordAdd = r => require.ensure([], () => r(require('../page/activity/recordAdd.vue')), 'recordAdd');
+const recordList = r => require.ensure([], () => r(require('../page/activity/recordList.vue')), 'recordList');
+const noticeAdd = r => require.ensure([], () => r(require('../page/activity/noticeAdd.vue')), 'noticeAdd');
+const noticeList = r => require.ensure([], () => r(require('../page/activity/noticeList.vue')), 'noticeList');
+const fengcaiAdd = r => require.ensure([], () => r(require('../page/activity/fengcaiAdd.vue')), 'fengcaiAdd');
+const fengcaiList = r => require.ensure([], () => r(require('../page/activity/fengcaiList.vue')), 'fengcaiList');
 const login = r => require.ensure([], () => r(require('../page/login/index.vue')), 'login');
 export default [{
         path: '/index',
@@ -21,7 +26,33 @@ export default [{
             },
             {
                 path: 'recordAdd',
+                name:'recordAdd',
                 component: recordAdd,
+            },
+            {
+                path: 'recordList',
+                name:'recordList',
+                component: recordList,
+            },
+            {
+                path: 'noticeAdd',
+                name:'noticeAdd',
+                component: noticeAdd,
+            },
+            {
+                path: 'noticeList/type/:type',
+                name:'noticeList',
+                component: noticeList,
+            },
+            {
+                path: 'fengcaiAdd',
+                name:'fengcaiAdd',
+                component: fengcaiAdd,
+            },
+            {
+                path: 'fengcaiList',
+                name:'fengcaiList',
+                component: fengcaiList,
             },
         ]
     },

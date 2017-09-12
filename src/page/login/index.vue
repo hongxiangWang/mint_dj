@@ -78,7 +78,7 @@
                     }
             },
             nextstep(){
-                this.$router.replace('/home');
+                this.$router.push('/home/main');
             }
         }
     }
