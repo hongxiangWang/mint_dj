@@ -16,16 +16,16 @@
             return {
                 menus: [
                     {
-                        label: '通知公告', icon: 'fa-bullhorn', to: 'recordAdd', btnBg: 'button-action'
+                        label: '通知公告', icon: 'fa-bullhorn', to: 'noticeList/type/1', btnBg: 'button-action'
                     },
                     {
-                        label: '每周学习', icon: 'fa-bookmark', to: 'planAdd', btnBg: 'button-action'
+                        label: '每周学习', icon: 'fa-bookmark', to: 'noticeList/type/2', btnBg: 'button-action'
                     },
                     {
                         label: '活动上传', icon: 'fa-list', to: 'recordList', btnBg: 'button-action'
                     },
                     {
-                        label: '风采展示', icon: 'fa-list-alt', to: 'planList', btnBg: 'button-action'
+                        label: '风采展示', icon: 'fa-list-alt', to: 'fengcaiList', btnBg: 'button-action'
                     },]
             }
         },
