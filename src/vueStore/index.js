@@ -7,7 +7,11 @@ import actions from './action'
 Vue.use(Vuex)
 const state = {
     contentCon:'',
-    con1:[{}]
+    con1:[{}],
+    organized:{
+        party:[],
+        cascader_data:[]
+    }
 }
 
 export default new Vuex.Store({

@@ -1,5 +1,17 @@
 <template>
     <div>
+
+        <mt-field label="活动类型："  type="text" disabled="disabled"  v-model="type_name">
+            <mt-button @click="organiedSelect" size="small" type="primary">点击选择</mt-button>
+            <mt-popup
+                    style="width: 100%;margin-bottom: 30px"
+                    v-model="organiedPopup"
+                    position="bottom">
+                    <organied-popup
+                    @cancel="pickCancel"
+                    @submit="pickerSubmit"></organied-popup>
+            </mt-popup>
+        </mt-field>
         <mt-field label="活动类型："  type="text" disabled="disabled"  v-model="type_name">
             <mt-button @click="typeSelect" size="small" type="primary">点击选择</mt-button>
         </mt-field>
@@ -34,9 +46,10 @@
         <mt-field label="参会人员："  type="text" disabled="disabled"  v-model="type_name">
             <mt-button @click="attendList" size="small" type="primary">点击选择</mt-button>
             <mt-popup
+                    style="width: 90%;margin-bottom: 30px"
                     v-model="popupVisible"
                     position="bottom">
-                <deptmentpeople></deptmentpeople>
+                <deptmentpeople style="height:700px;overflow: scroll;margin-bottom: 5px"></deptmentpeople>
             </mt-popup>
         </mt-field>
         <mt-actionsheet
@@ -47,6 +60,7 @@
 </template>
 <script>
     import deptmentpeople from '../../components/deptmentPeople.vue'
+    import organiedPopup from '../../components/pickerOrganied.vue'
     export default {
         data() {
             return {
@@ -75,9 +89,10 @@
                 },
                 type_name:'',
                 popupVisible:false,
+                organiedPopup:false,
             }
         },
-        components:{deptmentpeople},
+        components:{deptmentpeople,organiedPopup},
         methods: {
             typeSelect() {
                 this.sheetVisible = true;
@@ -100,6 +115,15 @@
             },
             attendList(){
                 this.popupVisible = true;
+            },
+            organiedSelect(){
+                this.organiedPopup = true;
+            },
+            pickCancel(){
+                this.organiedPopup = false;
+            },
+            pickerSubmit(call){
+                this.organiedPopup = false;
             }
 
         },
