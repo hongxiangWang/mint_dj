@@ -16,10 +16,10 @@
             return {
                 menus: [
                     {
-                        label: '通知公告', icon: 'fa-bullhorn', to: 'noticeList/type/1', btnBg: 'button-action'
+                        label: '通知公告', icon: 'fa-bullhorn', to: 'noticeList/notice_type/1', btnBg: 'button-action'
                     },
                     {
-                        label: '每周学习', icon: 'fa-bookmark', to: 'noticeList/type/2', btnBg: 'button-action'
+                        label: '每周学习', icon: 'fa-bookmark', to: 'noticeList/notice_type/2', btnBg: 'button-action'
                     },
                     {
                         label: '活动上传', icon: 'fa-list', to: 'recordList', btnBg: 'button-action'

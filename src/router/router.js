@@ -5,6 +5,7 @@ const recordAdd = r => require.ensure([], () => r(require('../page/activity/reco
 const recordList = r => require.ensure([], () => r(require('../page/activity/recordList.vue')), 'recordList');
 const noticeAdd = r => require.ensure([], () => r(require('../page/activity/noticeAdd.vue')), 'noticeAdd');
 const noticeList = r => require.ensure([], () => r(require('../page/activity/noticeList.vue')), 'noticeList');
+const noticeInfo = r => require.ensure([], () => r(require('../page/activity/noticeInfo.vue')), 'noticeInfo');
 const fengcaiAdd = r => require.ensure([], () => r(require('../page/activity/fengcaiAdd.vue')), 'fengcaiAdd');
 const fengcaiList = r => require.ensure([], () => r(require('../page/activity/fengcaiList.vue')), 'fengcaiList');
 const login = r => require.ensure([], () => r(require('../page/login/index.vue')), 'login');
@@ -35,12 +36,17 @@ export default [{
                 component: recordList,
             },
             {
-                path: 'noticeAdd',
+                path: 'noticeAdd/notice_type/:notice_type',
                 name:'noticeAdd',
                 component: noticeAdd,
             },
             {
-                path: 'noticeList/type/:type',
+                path: 'noticeInfo/id/:id',
+                name:'noticeInfo',
+                component: noticeInfo,
+            },
+            {
+                path: 'noticeList/notice_type/:notice_type',
                 name:'noticeList',
                 component: noticeList,
             },
