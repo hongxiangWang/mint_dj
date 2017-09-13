@@ -8,6 +8,7 @@ const noticeList = r => require.ensure([], () => r(require('../page/activity/not
 const noticeInfo = r => require.ensure([], () => r(require('../page/activity/noticeInfo.vue')), 'noticeInfo');
 const fengcaiAdd = r => require.ensure([], () => r(require('../page/activity/fengcaiAdd.vue')), 'fengcaiAdd');
 const fengcaiList = r => require.ensure([], () => r(require('../page/activity/fengcaiList.vue')), 'fengcaiList');
+const fengcaiInfo = r => require.ensure([], () => r(require('../page/activity/fengcaiInfo.vue')), 'fengcaiInfo');
 const login = r => require.ensure([], () => r(require('../page/login/index.vue')), 'login');
 export default [{
         path: '/index',
@@ -59,6 +60,11 @@ export default [{
                 path: 'fengcaiList',
                 name:'fengcaiList',
                 component: fengcaiList,
+            },
+            {
+                path: 'fengcaiInfo/id/:id',
+                name:'fengcaiInfo',
+                component: fengcaiInfo,
             },
         ]
     },

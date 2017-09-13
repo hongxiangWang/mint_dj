@@ -11,16 +11,18 @@
                         :key="item.id"
                 >
                     <div class="fengcai_pic_box">
+                        <router-link :to="'/home/fengcaiInfo/id/'+item.id">
                         <div class="pic_box">
-                            <img src="../../assets/images/hamberger.png" alt="">
+                            <img :src="item.pic_url" :alt="item.title" />
                         </div>
                         <div class="title_box">
-                            titlefsdafsadfsdf
+                            {{item.title}}
                         </div>
                         <div class="action_box">
-                            <span class="publish_date">2017-09-12 12:30:23</span>
+                            <span class="publish_date">{{item.create_time}}</span>
                             <span class="heart_up"><i class="fa fa-heart-o"></i></span>
                         </div>
+                        </router-link>
                     </div>
                 </Waterfall-slot>
             </Waterfall>
@@ -37,64 +39,39 @@
     export default {
         data () {
             return {
-                items:[
-                    {
-                        id:1,
-                        width:190,
-                        height:190
-                    },
-                    {
-                        id:1,
-                        width:190,
-                        height:190
-                    },
-                    {
-                        id:1,
-                        width:190,
-                        height:190
-                    },
-                    {
-                        id:1,
-                        width:190,
-                        height:190
-                    },
-                    {
-                        id:1,
-                        width:190,
-                        height:190
-                    },
-                    {
-                        id:1,
-                        width:190,
-                        height:190
-                    },
-                    {
-                        id:1,
-                        width:190,
-                        height:190
-                    },
-                    {
-                        id:1,
-                        width:190,
-                        height:190
-                    },
-                    {
-                        id:1,
-                        width:190,
-                        height:190
-                    },
-                    {
-                        id:1,
-                        width:190,
-                        height:190
-                    },
-                    ],
+                result_data: [],
+                items: [
+//                    {
+//                        id:1,
+//                        width:190,
+//                        height:190
+//                    }
+                ],
 
             }
         },
         methods: {
             fengcai_add(){
                 this.$router.push('/home/fengcaiAdd');
+            },
+            getFengcaiList(vm, params){
+                vm.$ajax.post('/fengcai/fengcai_list', params).then(res => {
+                    if (res.data.errno == 0) {
+                        vm.result_data = res.data.data;
+                        vm.result_data.forEach(item => {
+                            item.width = 190;
+                            item.height = 190;
+                            item.pic_url = require('../../value/string').fileread+item.pic_url;
+                            vm.items.push(item);
+                        });
+                        console.log(this.items);
+                    } else {
+                        vm.$message({message: '内容获取失败，请重试', type: 'error'});
+                    }
+                }).catch(err => {
+                    vm.$message({message: '抱歉，获取数据失败，请重试', type: 'error'})
+                    console.log('----', err)
+                });
             }
         },
         computed: {},
@@ -102,7 +79,8 @@
 
         },
         mounted(){
-
+            let params = {};
+            this.getFengcaiList(this, params);
         },
         components: {
             Waterfall,
@@ -111,34 +89,69 @@
     }
 </script>
 <style>
-    .side-bar a,.chat-tips i {background: url(../../assets/images/icon66.png) no-repeat;}
-    .side-bar {width: 66px;position: fixed;bottom: 30px;right: 10px;font-size: 0;line-height: 0;z-index: 100;}
-    .side-bar a {width: 66px;height: 66px;display: inline-block;margin-bottom: 2px;}
-    .side-bar a:hover {background-color: #669fdd;}
-    .side-bar .icon-publish {background-position: 0 0px;}
-    .waterfall{
-        overflow: hidden;
-        margin-top:50px;
-        margin-left:10px;
+    .side-bar a, .chat-tips i {
+        background: url(../../assets/images/icon66.png) no-repeat;
     }
-    .pic_box{
+
+    .side-bar {
+        width: 66px;
+        position: fixed;
+        bottom: 30px;
+        right: 10px;
+        font-size: 0;
+        line-height: 0;
+        z-index: 100;
+    }
+
+    .side-bar a {
+        width: 66px;
+        height: 66px;
+        display: inline-block;
+        margin-bottom: 2px;
+    }
+
+    .side-bar a:hover {
+        background-color: #669fdd;
+    }
+
+    .side-bar .icon-publish {
+        background-position: 0 0px;
+    }
+
+    .waterfall {
+        overflow: hidden;
+        margin-top: 50px;
+        margin-left: 10px;
+    }
+
+    .pic_box {
 
     }
-    .pic_box img{
-        width:190px;
-        height:150px;
+    .fengcai_pic_box a{
+        text-decoration: none;
     }
-    .title_box{
-        font-size:14px;
+    .pic_box img {
+        width: 190px;
+        height: 150px;
     }
-    .action_box{
-        margin-top:5px;
+
+    .title_box {
+        font-size: 14px;
+        color:#444;
+        text-decoration: none;
     }
-    .action_box .publish_date{
-        font-size:12px;
+    .action_box {
+        margin-top: 5px;
+        color:#444;
+        text-decoration: none;
     }
-    .action_box .heart_up{
-        float:right;
-        margin-right:10px;
+
+    .action_box .publish_date {
+        font-size: 12px;
+    }
+
+    .action_box .heart_up {
+        float: right;
+        margin-right: 10px;
     }
 </style>

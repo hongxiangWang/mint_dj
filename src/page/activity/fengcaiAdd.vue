@@ -23,7 +23,8 @@
             </div>
             <div class="submit_box">
                 <div class="publish_box" v-if="is_login">
-                    <mt-button type="primary" size="large" :disabled="is_dis" @click="fengcai_add"  style="width:98%;margin:0px auto;">
+                    <mt-button type="primary" size="large" :disabled="is_dis" @click="fengcai_add"
+                               style="width:98%;margin:0px auto;">
                         发布信息
                     </mt-button>
                 </div>
@@ -37,7 +38,7 @@
     export default {
         data () {
             return {
-                is_dis:false,
+                is_dis: false,
                 fengcai: {
                     title: '',
                     fengcai_pic_id_str: []
@@ -46,13 +47,13 @@
                     pic_url: '',
                     pic_content: ''
                 },
-                fengcai_pic_json_array:[],
+                fengcai_pic_json_array: [],
 
                 uploadUri: require('../../value/string').uploadUrl,
                 fileList: [],
                 dialogVisible: false,
                 dialogImageUrl: '',
-                span_index:0
+                span_index: 0
             }
         },
         methods: {
@@ -62,19 +63,19 @@
                     //服务端上传 - 用的这个
                     if (file.response != undefined && v == file.response.data) {
                         //清除对应的input输入框,
-                        $("#span_"+i+"").remove();
-                        this.fengcai_pic_json_array.splice(i,1);
+                        $("#span_" + i + "").remove();
+                        this.fengcai_pic_json_array.splice(i, 1);
                         s.splice(i, 1);
                     }
                     //本地上传
                     if (file.response == undefined && v == file.url.replace(require('../../value/string').fileread, '').replace(`ctdj/www/static`, `file`)) {
                         //清除对应的input输入框,
-                        $("#span_"+i+"").remove();
-                        this.fengcai_pic_json_array.splice(i,1);
+                        $("#span_" + i + "").remove();
+                        this.fengcai_pic_json_array.splice(i, 1);
                         s.splice(i, 1);
                     }
                 });
-                console.log(this.fengcai_pic_json_array);
+//                console.log(this.fengcai_pic_json_array);
             },
             uploadPreview(file) {
                 this.dialogImageUrl = file.url;
@@ -84,11 +85,11 @@
                 if (res.errno == 0) {
                     this.fengcai.fengcai_pic_id_str.push(res.data);
                     let $ = this.$jquery;
-                    let input_html = "<input class='pic_content_input' placeholder=\"请输入内容\" />";
-                    $(".el-upload-list--picture-card .el-upload-list__item").each(function(i,item){
-                        $(this).after("<span id=\"span_"+i+"\" class='pic_content_span'>"+input_html+"</span>");
+                    let textarea_html = "<textarea class='pic_content_textarea' style='width:100%;height:100px;border:1px solid #ccc' placeholder=\"请输入内容\" />";
+                    $(".el-upload-list--picture-card .el-upload-list__item").each(function (i, item) {
+                        $(this).after("<span id=\"span_" + i + "\" class='pic_content_span'>" + textarea_html + "</span>");
                         //删除多余的input，只保留一个
-                        $("#span_"+i+"").eq(0).nextAll("#span_"+i+"").remove();
+                        $("#span_" + i + "").eq(0).nextAll("#span_" + i + "").remove();
                     });
                     //绑定对象
 
@@ -98,14 +99,28 @@
             fengcai_add(){
                 this.is_dis = true;
                 let $ = this.$jquery;
-                this.$nextTick(_=>{
-                    this.fengcai.fengcai_pic_id_str.forEach((item,i)=>{
-                        let tmp_pic_content = $("#span_"+i+"").find("input")[0].value;
-                        let fengcai_pic = {pic_url:item,pic_content:tmp_pic_content};
+                var that = this;
+                this.$nextTick(_ => {
+                    this.fengcai.fengcai_pic_id_str.forEach((item, i) => {
+                        let tmp_pic_content = $("#span_" + i + "").find("textarea")[0].value;
+                        let fengcai_pic = {pic_url: item, pic_content: tmp_pic_content};
                         this.fengcai_pic_json_array.push(fengcai_pic);
                     });
                     console.log(this.fengcai);
                     console.log(this.fengcai_pic_json_array);
+                    //ajax传送
+                    let params = {title: this.fengcai.title, fengcai_pic_json_array: this.fengcai_pic_json_array};
+                    that.$ajax.post('/fengcai/fengcai_add', params).then(res => {
+                        if (res.data.errno == 0) {
+                            that.$message({message: '上传成功', type: 'success'});
+                            that.$router.push('/home/fengcaiList');
+                        } else {
+                            this.$message({message: '上传失败，请重试', type: 'error'});
+                        }
+                    }).catch(err => {
+                        that.$message({message: '抱歉，获取数据失败，请重试', type: 'error'})
+                        console.log('----', err)
+                    });
                 });
             }
         },
@@ -140,28 +155,34 @@
     #upload .mint-field-core {
         max-width: 0;
     }
-    .el-upload--picture-card{
-        min-width:290px;
+
+    .el-upload--picture-card {
+        min-width: 290px;
     }
-    .el-upload-list--picture-card .el-upload-list__item{
-        width:100%;
-        height:100%;
+
+    .el-upload-list--picture-card .el-upload-list__item {
+        width: 100%;
+        height: 100%;
     }
-    input.pic_content_input{
-        width:100%;
-        height:30px;
-        line-height:30px;
-        border:1px solid #ccc;
-        border-radius:3px;
+
+    input.pic_content_input {
+        width: 100%;
+        height: 30px;
+        line-height: 30px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
     }
-    .file_upload_box{
-        margin:10px 0px;
+
+    .file_upload_box {
+        margin: 10px 0px;
     }
-    .pic_content_span{
-        display:block;
-        margin-bottom:10px;
+
+    .pic_content_span {
+        display: block;
+        margin-bottom: 10px;
     }
-    .submit_box{
-        margin-top:10px;
+
+    .submit_box {
+        margin-top: 10px;
     }
 </style>
