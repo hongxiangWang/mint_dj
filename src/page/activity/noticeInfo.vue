@@ -5,7 +5,7 @@
             <span>发布时间：{{oData.create_time}}</span>
         </div>
         <div v-html="oData.content" class="ql-editor"></div>
-        <div class="file_box">
+        <div class="file_box" v-if="file_list.length>0">
             <label v-if="file_list.length>0">附件：</label>
             <div class="file_attach_box">
                 <el-button
