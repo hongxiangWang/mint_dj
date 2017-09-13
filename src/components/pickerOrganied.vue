@@ -137,7 +137,7 @@
                         this.pickerSlots[0].values = this.oData;
                         this.$store.commit('ORGANIZED_CASCADER_DATA', res.data.data);
                     } else {
-                        console.log('000000---', res.data)
+                        //console.log('000000---', res.data)
                         res.data.data[0].children.forEach(value => {
                             let json = {};
                             json.label = value.dept_name;

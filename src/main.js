@@ -19,9 +19,13 @@ const jquery = require('jquery');
 const axiosInit = axios.create(config);
 
 
+import VueQuillEditor from 'vue-quill-editor'
+
+
 Vue.use(VueRouter);
 Vue.use(MintUI);
 Vue.use(ElementUI);
+Vue.use(VueQuillEditor);
 
 Vue.prototype.$ajax = axiosInit;
 Vue.prototype.$jquery = jquery;

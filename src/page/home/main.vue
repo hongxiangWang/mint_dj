@@ -16,7 +16,7 @@
     export default {
         data () {
             return {
-                name: "123"
+
             }
         },
         components:{

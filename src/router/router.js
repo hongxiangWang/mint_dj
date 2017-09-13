@@ -3,6 +3,8 @@ const home = r => require.ensure([], () => r(require('../page/home/index.vue')),
 const main = r => require.ensure([], () => r(require('../page/home/main.vue')), 'main');
 const recordAdd = r => require.ensure([], () => r(require('../page/activity/recordAdd.vue')), 'recordAdd');
 const recordList = r => require.ensure([], () => r(require('../page/activity/recordList.vue')), 'recordList');
+const recordInfo = r => require.ensure([], () => r(require('../page/activity/recordInfo.vue')), 'recordInfo');
+
 const noticeAdd = r => require.ensure([], () => r(require('../page/activity/noticeAdd.vue')), 'noticeAdd');
 const noticeList = r => require.ensure([], () => r(require('../page/activity/noticeList.vue')), 'noticeList');
 const noticeInfo = r => require.ensure([], () => r(require('../page/activity/noticeInfo.vue')), 'noticeInfo');
@@ -44,6 +46,11 @@ export default [{
                 path: 'noticeInfo/id/:id',
                 name:'noticeInfo',
                 component: noticeInfo,
+            },
+            {
+                path: 'recordInfo/id/:id',
+                name:'recordInfo',
+                component: recordInfo,
             },
             {
                 path: 'noticeList/notice_type/:notice_type',

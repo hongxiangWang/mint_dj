@@ -22,7 +22,7 @@
                         label: '每周学习', icon: 'fa-bookmark', to: 'noticeList/notice_type/2', btnBg: 'button-action'
                     },
                     {
-                        label: '活动上传', icon: 'fa-list', to: 'recordList', btnBg: 'button-action'
+                        label: '活动列表', icon: 'fa-list', to: 'recordList', btnBg: 'button-action'
                     },
                     {
                         label: '风采展示', icon: 'fa-list-alt', to: 'fengcaiList', btnBg: 'button-action'
