@@ -1,3 +1,10 @@
+.icon {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}
 #shortcutMenu {
   width: 100%;
   height: auto;
@@ -7,7 +14,7 @@
   z-index: 1;
 }
 #shortcutMenu .cell {
-  width: 33%;
+  width: 50%;
   text-align: center;
   display: inline-block;
   margin-bottom: 20px;
@@ -17,4 +24,31 @@
 }
 #shortcutMenu .cell p {
   margin: 8px auto;
+}
+#shortcutMenu .button-wrap {
+  border-radius: 8px;
+}
+#shortcutMenu .orange {
+  color: white;
+  background: linear-gradient(#FFE0B2, #FF9800);
+}
+#shortcutMenu .blue {
+  background: linear-gradient(#BBDEFB, #0288D1);
+}
+#shortcutMenu .purple {
+  background: linear-gradient(#F48FB1, #D81B60);
+}
+#shortcutMenu .green {
+  background: linear-gradient(#C5E1A5, #43A047);
+}
+#shortcutMenu .button-raised {
+  background-color: transparent;
+}
+#shortcutMenu .button-circle {
+  width: 64px;
+}
+#shortcutMenu .button {
+  color: white;
+  height: 64px;
+  font-size: 36px;
 }
