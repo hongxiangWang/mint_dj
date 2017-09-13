@@ -43,6 +43,8 @@
         },
         computed: {
             userList() {
+                this.allSwitch = false;
+                this.value = [];
                 return getUersList(this)
             }
         },

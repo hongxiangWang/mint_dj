@@ -1,4 +1,10 @@
 @baseColor:#FFAB91;
+.icon {
+  width: 1em; height: 1em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}
 #shortcutMenu{
   width: 100%;
   height: auto;
@@ -7,7 +13,7 @@
   padding: 0px 0px;
   z-index: 1;
   .cell{
-    width: 33%;
+    width: 50%;
     text-align: center;
     display: inline-block;
     margin-bottom: 20px;
@@ -17,5 +23,32 @@
     p{
       margin: 8px auto;
     }
+  }
+  .button-wrap{
+    border-radius: 8px;
+  }
+  .orange {
+    color: white;
+    background: linear-gradient(#FFE0B2, #FF9800);
+  }
+  .blue{
+    background: linear-gradient(#BBDEFB, #0288D1);
+  }
+  .purple{
+    background: linear-gradient(#F48FB1, #D81B60);
+  }
+  .green{
+    background: linear-gradient(#C5E1A5, #43A047);
+  }
+  .button-raised{
+    background-color: transparent;
+  }
+  .button-circle{
+    width: 64px;
+  }
+  .button{
+    color: white;
+    height: 64px;
+    font-size: 36px;
   }
 }

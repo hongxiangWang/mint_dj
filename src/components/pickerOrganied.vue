@@ -17,7 +17,10 @@
                     :visible-item-count="7"
                     :value-key="vk"></mt-picker>
         </div>
-        <p><label>选择的是：</label><span style="color: orangered">{{pickerSeletVuale}}</span></p>
+
+        <br>
+        <hr style="border-top: #ccc 1px solid;">
+        <p style="line-height: 24px"><label>选择的是：</label><span style="color: orangered">{{pickerSeletVuale}}</span></p>
         <!--<p class="page-picker-desc">地址: {{ addressProvince }} {{ addressCity }}</p>-->
 
     </div>
@@ -134,7 +137,7 @@
                         this.pickerSlots[0].values = this.oData;
                         this.$store.commit('ORGANIZED_CASCADER_DATA', res.data.data);
                     } else {
-                        console.log('000000---', res.data)
+                        //console.log('000000---', res.data)
                         res.data.data[0].children.forEach(value => {
                             let json = {};
                             json.label = value.dept_name;

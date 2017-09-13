@@ -40,7 +40,7 @@
                     month-format="{value} 月"
                     date-format="{value} 日"
                     @confirm="endDateChange"
-                    v-model="form.activity_start_time">
+                    v-model="form.activity_end_time">
             </mt-datetime-picker>
         </mt-field>
 
@@ -62,8 +62,8 @@
         <mt-field label="记录人：" placeholder="请输入" v-model="form.record_write_people"></mt-field>
         <mt-field label="活动地点：" placeholder="请输入" v-model="form.activity_place"></mt-field>
         <mt-field label="议会主题：" placeholder="请输入" v-model="form.record_subtitle"></mt-field>
-        <mt-field label="活动内容：" placeholder="请输入" v-model="form.record_content"></mt-field>
-        <mt-field label="附件："id="upload">
+        <mt-field label="活动内容：" placeholder="请输入" v-model="form.record_content" type="textarea"></mt-field>
+        <mt-field label="附件：" id="upload">
             <el-upload
                     :action="uploadUri"
                     list-type="picture-card"
@@ -79,7 +79,7 @@
         </mt-field>
         <br/>
 
-        <mt-button size="large" type="primary" @click="submit">提交</mt-button>
+        <mt-button size="large" type="primary" @click="submit" :disabled="submitBtn">提交</mt-button>
 
         <br/>
 
@@ -104,14 +104,12 @@
                     {name: '其他', method: this.sheetClick, id: 6}],
                 sheetVisible: false,
                 form: {
-                    dept_id: '',
                     record_title: '',
                     record_type: '',
                     start_time: '',
                     activity_start_time: new Date(),
                     end_time: '',
-                    activity_end_time: '',
-                    attend_user_arr: [],
+                    activity_end_time: new Date(),
                     record_host_people: '',
                     record_write_people: '',
                     activity_place: '',
@@ -128,7 +126,9 @@
                 uploadUri: require('../../value/string').uploadUrl,
                 fileList: [],
                 dialogVisible: false,
-                dialogImageUrl:''
+                dialogImageUrl: '',
+                attend_user_id: '',
+                submitBtn: false
             }
         },
         components: {deptmentpeople, organiedPopup},
@@ -180,6 +180,7 @@
             },
             deptSubmit(call) {
                 this.attend_user_str = call.label;
+                this.attend_user_id = call.value;
                 this.popupVisible = false;
             },
             uploadRemove(file, fileList) {
@@ -203,21 +204,102 @@
                 console.log('res-----', res)
             },
 
-            submit(){
-                if(dept_id==0){
+            submit() {
+                if (this.dept_id == 0) {
                     this.$toast({message: '请选择党支部', position: 'bottom', duration: 2500});
                     return;
                 }
-                if(this.form.record_type==''){
-                    this.$toast({message: '请选择党支部', position: 'bottom', duration: 2500});
+                if (this.form.record_type == '') {
+                    this.$toast({message: '活动类型未选', position: 'bottom', duration: 2500});
                     return;
                 }
+                if (this.form.start_time == '') {
+                    this.$toast({message: '活动开始时间未选', position: 'bottom', duration: 2500});
+                    return;
+                }
+                if (this.form.end_time == '') {
+                    this.$toast({message: '活动结束时间未选', position: 'bottom', duration: 2500});
+                    return;
+                }
+                if (this.form.record_title == '') {
+                    this.$toast({message: '活动名称未填', position: 'bottom', duration: 2500});
+                    return;
+                }
+                if (this.attend_user_str == '') {
+                    this.$toast({message: '参会人员未选', position: 'bottom', duration: 2500});
+                    return;
+                }
+                if (this.form.record_host_people == '') {
+                    this.$toast({message: '主持人未填', position: 'bottom', duration: 2500});
+                    return;
+                }
+                if (this.form.record_write_people == '') {
+                    this.$toast({message: '记录人未填', position: 'bottom', duration: 2500});
+                    return;
+                }
+                if (this.form.record_subtitle == '') {
+                    this.$toast({message: '议会主题未填', position: 'bottom', duration: 2500});
+                    return;
+                }
+                if (this.form.record_content == '') {
+                    this.$toast({message: '活动内容未填', position: 'bottom', duration: 2500});
+                    return;
+                }
+
+                let params = this.form;
+                params.attend_user_id = this.attend_user_id;
+                params.file_id_list = dealFormArrayData(this.form.file_id_arr);
+                params.admin_id = require('store').get('people_info')[0].admin_id;
+                params.activity_start_time = dealDateFormt(new Date(params.activity_start_time));
+                params.activity_end_time = dealDateFormt(new Date(params.activity_end_time));
+                params.dept_id = this.dept_id;
+                console.log('submit--params--', params);
+                submitData(this, params)
+
             }
 
         },
         mounted() {
-            console.log('------->>>',this)
+            console.log('------->>>', this)
         }
+    }
+
+    function dealFormArrayData(arr) {
+        let temp = '';
+        if (arr instanceof Array) {
+            arr.forEach(v => {
+                temp += v + '|';
+            });
+        }
+        return temp;
+    }
+
+    function dealDateFormt(d) {
+        return d.Format('yyyy-MM-dd');
+    }
+
+    function submitData(vm, data) {
+        vm.submitBtn = true;
+        let params = {};
+        params.url = `/activity_record/activity_record_add`;
+        params.tips = '添加成功,2秒后跳转'
+
+        params.activity_record_data = data;
+        vm.$ajax.post(params.url, params).then(res => {
+            if (res.data.errno == 0) {
+                vm.$message({message: params.tips, type: 'success'});
+                setTimeout(_ => {
+                    vm.$router.replace('/home/recordList');
+                    vm.submitBtn = false;
+                }, 2000);
+            } else {
+                vm.submitBtn = false;
+                vm.$message({message: '操作失败,请重试', type: 'error'});
+            }
+        }).catch(err => {
+            vm.submitBtn = false;
+            vm.$message({message: '操作失败,请重试' + err.message, type: 'error'});
+        })
     }
 
 </script>
@@ -234,7 +316,8 @@
         text-overflow: ellipsis;
         white-space: nowrap;
     }
-    #upload .mint-field-core{
+
+    #upload .mint-field-core {
         max-width: 0;
     }
 </style>
