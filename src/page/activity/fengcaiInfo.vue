@@ -15,7 +15,7 @@
                         发布人：{{fengcai_info.big_dept_name}}-{{fengcai_info.small_dept_name}}-{{fengcai_info.people_name}}
                     </div>
                     <div class="dianzan_box" @click="dianzan">
-                        <i class="fa fa-thumbs-o-up"> <span class="zan_num">120</span></i>
+                        <i class="fa fa-thumbs-o-up"> <span class="zan_num">{{fengcai_info.zan_num}}</span></i>
                     </div>
                 </div>
             </div>
@@ -34,8 +34,19 @@
             dianzan(){
                 const $ = this.$jquery;
                 $(".dianzan_box>i").removeClass('fa-thumbs-o-up').addClass('fa-thumbs-up red');
-                console.log($(".zan_num").val());
-                $(".zan_num").text(parseInt($(".zan_num").text())+1);
+                this.$ajax.post('/fengcai/update_zan_num',{id:this.$route.params.id}).then(res => {
+                    console.log('res.data----', res.data);
+                    if (res.data.errno == 0) {
+                        this.$toast({message:'点赞成功',position:'bottom'});
+                        $(".zan_num").text(parseInt($(".zan_num").text())+1);
+                    }else{
+                        this.$toast({message:'点赞失败',position:'bottom'});
+                    }
+                }).catch(err => {
+                    this.$message({message: '抱歉，获取数据失败，请重试11', type: 'error'});
+                    console.log('----', err);
+                });
+
             }
         },
         computed: {},
@@ -49,7 +60,7 @@
                     });
                 }
             }).catch(err => {
-                this.$message({message: '抱歉，获取数据失败，请重试', type: 'error'});
+                this.$message({message: '抱歉，获取数据失败，请重试22', type: 'error'});
                 console.log('----', err);
             });
         },
