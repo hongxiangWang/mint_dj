@@ -212,7 +212,6 @@
                     this.$toast({message: '请选择党支部', position: 'bottom', duration: 2500});
                     return;
                 }
-
             }
 
         },
