@@ -20,7 +20,11 @@
                         </div>
                         <div class="action_box">
                             <span class="publish_date">{{item.create_time}}</span>
-                            <span class="heart_up"><i class="fa fa-heart-o"></i></span>
+                            <span class="heart_up">
+                                <i class="fa fa-heart">
+                                    <span class="zan_num">{{item.zan_num}}</span>
+                                </i>
+                            </span>
                         </div>
                         </router-link>
                     </div>
@@ -153,5 +157,9 @@
     .action_box .heart_up {
         float: right;
         margin-right: 10px;
+        color:red;
+    }
+    .action_box span.zan_num{
+        margin-left:5px;
     }
 </style>
