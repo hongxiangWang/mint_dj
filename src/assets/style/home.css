@@ -21,10 +21,14 @@
 }
 #home .slide2 {
   background-color: #ffd705;
+  background-image: url("../../assets/images/1.jpg");
+  background-position: center bottom;
   color: #000;
 }
 #home .slide3 {
   background-color: #ff2d4b;
+  background-image: url("../../assets/images/2.jpg");
+  background-position: center bottom;
   color: #fff;
 }
 #home #menu {

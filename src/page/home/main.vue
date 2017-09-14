@@ -1,9 +1,9 @@
 <template>
     <div>
         <mt-swipe :auto="5000">
-            <mt-swipe-item class="slide1">1</mt-swipe-item>
-            <mt-swipe-item class="slide2">2</mt-swipe-item>
-            <mt-swipe-item class="slide3">3</mt-swipe-item>
+            <mt-swipe-item class="slide1"></mt-swipe-item>
+            <mt-swipe-item class="slide2"></mt-swipe-item>
+            <mt-swipe-item class="slide3"></mt-swipe-item>
         </mt-swipe>
         <div id="menu">
             <shortcut-menu></shortcut-menu>
