@@ -97,8 +97,10 @@
 <style>
     .item_list {
         display: block;
+        height:80px;
         line-height: 80px;
         background: #fff;
+        width:100%;
     }
 
     .item_left {
@@ -110,24 +112,24 @@
     }
 
     .item_left_title {
-        margin-left: 5px;
+        float:right;
         display: inline-block; /*让span 标签变成行内标签但具有宽高属性*/
         white-space: nowrap; /*文本不进行换行*/
         overflow: hidden; /*隐藏溢出文本*/
         text-overflow: ellipsis; /*多出文本使用 ....代替*/
-        width: 80%; /*自适应布局*/
+        width: 78%; /*自适应布局*/
         text-decoration: none;
         color: #444;
     }
 
     .item_left_pic {
         float: left;
-        width: 60px;
+        width: 20%;
         text-align: center;
     }
 
     item_left_pic img {
-
+        width:90%;
     }
 
     .item_title {
@@ -135,14 +137,12 @@
     }
 
     .item_right {
+        float:right;
+        width:5%;
         text-align: right;
-        padding-right: 20px;
-    }
-
-    .item_right {
+        padding-right: 10px;
         color: #ccc;
     }
-
     .border_line {
         clear: both;
         width: 96%;
