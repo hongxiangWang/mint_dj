@@ -97,9 +97,21 @@
             },
             //处理新增逻辑
             fengcai_add(){
-                this.is_dis = true;
                 let $ = this.$jquery;
                 var that = this;
+                if(this.fengcai.title==''){
+                    this.$toast({ message: '请填写标题',
+                        position: 'bottom',
+                        duration: 2000});
+                    return false;
+                }
+                if(this.fengcai.fengcai_pic_id_str.length==0){
+                    this.$toast({ message: '请上传图片',
+                        position: 'bottom',
+                        duration: 2000});
+                    return false;
+                }
+                this.is_dis = true;
                 this.$nextTick(_ => {
                     this.fengcai.fengcai_pic_id_str.forEach((item, i) => {
                         let tmp_pic_content = $("#span_" + i + "").find("textarea")[0].value;
@@ -113,7 +125,7 @@
                     that.$ajax.post('/fengcai/fengcai_add', params).then(res => {
                         if (res.data.errno == 0) {
                             that.$message({message: '上传成功', type: 'success'});
-                            that.$router.push('/home/fengcaiList');
+                            that.$router.replace('/home/fengcaiList');
                         } else {
                             this.$message({message: '上传失败，请重试', type: 'error'});
                         }

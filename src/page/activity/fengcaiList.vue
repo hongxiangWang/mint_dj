@@ -100,7 +100,7 @@
     .side-bar {
         width: 66px;
         position: fixed;
-        bottom: 30px;
+        bottom: 40px;
         right: 10px;
         font-size: 0;
         line-height: 0;

@@ -9,10 +9,10 @@
                         <img v-lazy="item.pic_url" :src="item.pic_url" :alt="item.title"/>
                     </div>
                     <div class="info_text_box">
-                        <p>图片描述：{{item.pic_content}}</p>
+                        <p><strong>图片描述：</strong>{{item.pic_content}}</p>
                     </div>
                     <div class="info_action_box">
-                        发布人：{{fengcai_info.big_dept_name}}-{{fengcai_info.small_dept_name}}-{{fengcai_info.people_name}}
+                        <strong>发布人：</strong>{{fengcai_info.big_dept_name}}-{{fengcai_info.small_dept_name}}-{{fengcai_info.people_name}}
                     </div>
                     <div class="dianzan_box" @click="dianzan">
                         <i class="fa fa-thumbs-o-up"> <span class="zan_num">{{fengcai_info.zan_num}}</span></i>
