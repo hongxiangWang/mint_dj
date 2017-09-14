@@ -79,6 +79,21 @@
             },
             nextstep(){
                 this.$router.push('/home/main');
+            },
+            is_login(){
+                let token = this.$localStore.get('token');
+                if (token) {
+                    return true;
+                }
+                return false;
+            }
+        },
+        computed:{
+
+        },
+        mounted(){
+            if(this.is_login()){
+                this.$router.replace('/home/main');
             }
         }
     }

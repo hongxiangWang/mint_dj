@@ -44,6 +44,10 @@
         methods: {
             //分页查询管理员信息
             getPagedItemList(vm, params){
+                vm.$indicator.open({
+                    text: '加载中...',
+                    spinnerType: 'fading-circle'
+                });
                 vm.$ajax.post('/notice/notice_list', params).then(res => {
                     console.log('res.data----', res.data);
                     if (res.data.errno == 0) {
@@ -51,10 +55,12 @@
                         vm.result_data.data.forEach(item => {
                             vm.items.push(item);
                         });
+                        vm.$indicator.close();
                     }
                 }).catch(err => {
                     vm.$message({message: '抱歉，获取数据失败，请重试', type: 'error'})
-                    console.log('----', err)
+                    console.log('----', err);
+                    vm.$indicator.close();
                 });
             },
             loadMore() {
