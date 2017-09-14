@@ -11,7 +11,7 @@
                 <router-link :to="'/home/noticeInfo/id/'+item.id">
                     <div class="item_left">
                         <div class="item_left_pic">
-                            <img src="../../assets/images/icon100.png" width="50" height="50" alt="" align="middle">
+                            <img src="../../assets/images/icon100.png" width="44" height="44" alt="" align="middle">
                         </div>
                         <div class="item_left_title">
                             {{item.title}}
@@ -100,7 +100,7 @@
         filters: {},
     }
 </script>
-<style>
+<style scoped>
     .item_list {
         display: block;
         height:80px;
@@ -114,7 +114,7 @@
         width: 90%;
         height: 80px;
         display: inline-block;
-        font-size: 12px;
+        font-size: 14px;
     }
 
     .item_left_title {
@@ -123,7 +123,7 @@
         white-space: nowrap; /*文本不进行换行*/
         overflow: hidden; /*隐藏溢出文本*/
         text-overflow: ellipsis; /*多出文本使用 ....代替*/
-        width: 78%; /*自适应布局*/
+        width: 80%; /*自适应布局*/
         text-decoration: none;
         color: #444;
     }

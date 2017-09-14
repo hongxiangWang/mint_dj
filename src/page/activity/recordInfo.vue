@@ -94,7 +94,7 @@
         }
     }
 </script>
-<style lang="less">
+<style lang="less" >
 
     #record_info{
     margin-top:20px;
@@ -143,8 +143,18 @@
         font-size: 12px;
     }
     .file_box{
+        word-wrap:break-word;
         border:1px dashed red;
         margin:5px 10px;
         padding:10px 10px;
+    .el-button{
+        white-space:normal;
+        word-wrap:break-word;
+        text-align: start;
     }
+
+    }
+
+
+
 </style>

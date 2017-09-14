@@ -73,7 +73,7 @@
         }
     }
 </script>
-<style>
+<style lang="less"  scoped>
     .ql-editor{
         font-size:14px;
         padding:10px 10px;
@@ -98,5 +98,11 @@
         border:1px dashed red;
         margin:5px 10px;
         padding:10px 10px;
+    .el-button{
+        white-space:normal;
+        word-wrap:break-word;
+        text-align: start;
+    }
+
     }
 </style>
