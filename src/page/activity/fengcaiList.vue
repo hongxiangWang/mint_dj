@@ -56,6 +56,13 @@
         },
         methods: {
             fengcai_add(){
+                let token = this.$localStore.get('token');
+                if(token==null){
+                    this.$toast({ message: '请管理员先登陆',
+                        position: 'bottom',
+                        duration: 2000});
+                    return false;
+                }
                 this.$router.push('/home/fengcaiAdd');
             },
             getFengcaiList(vm, params){
