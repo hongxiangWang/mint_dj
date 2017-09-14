@@ -60,10 +60,12 @@
                 console.log('res.data----', res.data);
                 if (res.data.errno == 0) {
                     this.oData = res.data.data;
+                    this.$indicator.close();
                 }
             }).catch(err => {
                 this.$message({message: '抱歉，获取数据失败，请重试', type: 'error'});
                 console.log('----', err);
+                this.$indicator.close();
             });
         },
         mounted(){
