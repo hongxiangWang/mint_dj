@@ -73,7 +73,7 @@
         }
     }
 </script>
-<style lang="less"  scoped>
+<style>
     .ql-editor{
         font-size:14px;
         padding:10px 10px;
