@@ -44,6 +44,10 @@
         },
         methods: {
             submit(formName){
+                    this.$indicator.open({
+                        text: '登陆中...',
+                        spinnerType: 'fading-circle'
+                    });
 
                     var that = this;
                     let valid = false;
@@ -64,7 +68,8 @@
                         this.$ajax.post('/admin/login', params).then(response => {
                             if (response.data.errno == 0) {
                                 getAccount(this, response.data.data);
-                                this.$message({message:'登陆成功，即将跳转',type:'success',onClose(em){
+                                this.$indicator.close();
+                                this.$message({message:'登陆成功，即将跳转',type:'success',duration:1000,onClose(em){
                                     that.$router.replace('/home/main');
                                 }});
                             } else {
