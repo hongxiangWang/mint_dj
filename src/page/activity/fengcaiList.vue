@@ -1,16 +1,16 @@
 <template>
     <div>
         <div class="waterfall">
-            <Waterfall :line-gap="200" :watch="items">
-                <!-- each component is wrapped by a waterfall slot -->
-                <Waterfall-slot
-                        v-for="(item, index) in items"
-                        :width="item.width"
-                        :height="item.height"
-                        :order="index"
-                        :key="item.id"
-                >
-                    <div class="fengcai_pic_box">
+            <!--<Waterfall :line-gap="190" :max-line-gap="200" :watch="items">-->
+                <!--&lt;!&ndash; each component is wrapped by a waterfall slot &ndash;&gt;-->
+                <!--<Waterfall-slot-->
+                        <!--v-for="(item, index) in items"-->
+                        <!--:width="item.width"-->
+                        <!--:height="item.height"-->
+                        <!--:order="index"-->
+                        <!--:key="item.id"-->
+                <!--&gt;-->
+                    <div class="fengcai_pic_box" v-for="(item, index) in items" :key="item.id">
                         <router-link :to="'/home/fengcaiInfo/id/'+item.id">
                         <div class="pic_box">
                             <img :src="item.pic_url" :alt="item.title" />
@@ -28,8 +28,8 @@
                         </div>
                         </router-link>
                     </div>
-                </Waterfall-slot>
-            </Waterfall>
+                <!--</Waterfall-slot>-->
+            <!--</Waterfall>-->
         </div>
         <div class="side-bar">
             <a href="javascript:" @click="fengcai_add" class="icon-blog">发布</a>
@@ -38,8 +38,8 @@
 </template>
 
 <script>
-    import Waterfall from 'vue-waterfall/lib/waterfall.vue'
-    import WaterfallSlot from 'vue-waterfall/lib/waterfall-slot.vue'
+//    import Waterfall from 'vue-waterfall/lib/waterfall.vue'
+//    import WaterfallSlot from 'vue-waterfall/lib/waterfall-slot.vue'
     export default {
         data () {
             return {
@@ -87,8 +87,8 @@
             this.getFengcaiList(this, params);
         },
         components: {
-            Waterfall,
-            WaterfallSlot
+//            Waterfall,
+//            WaterfallSlot
         },
     }
 </script>
@@ -125,18 +125,27 @@
     .waterfall {
         overflow: hidden;
         margin-top: 50px;
-        margin-left: 10px;
+        width:100%;
+        /*margin-left: 10px;*/
     }
 
-    .pic_box {
-
+    .fengcai_pic_box{
+        width:48%;
+        margin-left:1%;
+        float:left;
+        display: inline-block;
     }
     .fengcai_pic_box a{
         text-decoration: none;
     }
+    .pic_box {
+
+    }
     .pic_box img {
-        width: 190px;
-        height: 150px;
+        width:100%;
+        height:160px;
+        max-width: 190px;
+        max-height: 190px;
     }
 
     .title_box {

@@ -17,7 +17,7 @@
                         <i class="el-icon-plus"></i>
                     </el-upload>
                     <el-dialog v-model="dialogVisible" size="large">
-                        <img width="100%" :src="dialogImageUrl" alt="">
+                        <img width="96%" :src="dialogImageUrl" alt="">
                     </el-dialog>
                 </mt-field>
             </div>
@@ -157,7 +157,7 @@
     }
 
     .el-upload--picture-card {
-        min-width: 290px;
+        min-width:240px;
     }
 
     .el-upload-list--picture-card .el-upload-list__item {
