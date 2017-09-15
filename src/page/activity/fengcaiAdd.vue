@@ -125,7 +125,7 @@
                     that.$ajax.post('/fengcai/fengcai_add', params).then(res => {
                         if (res.data.errno == 0) {
                             that.$message({message: '上传成功', type: 'success'});
-                            that.$router.replace('/home/fengcaiList');
+                            that.$router.replace('/fengcaiList');
                         } else {
                             this.$message({message: '上传失败，请重试', type: 'error'});
                         }

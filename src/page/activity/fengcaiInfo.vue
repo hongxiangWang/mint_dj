@@ -58,7 +58,7 @@
                         console.log('res.data----', res.data);
                         if (res.data.errno == 0) {
                             this.$toast({message:'删除成功',position:'bottom'});
-                            this.$router.replace('/home/fengcaiList');
+                            this.$router.replace('/fengcaiList');
                         }else{
                             this.$toast({message:'删除失败',position:'bottom'});
                         }

@@ -11,7 +11,7 @@
                         <!--:key="item.id"-->
                 <!--&gt;-->
                     <div class="fengcai_pic_box" v-for="(item, index) in items" :key="item.id">
-                        <router-link :to="'/home/fengcaiInfo/id/'+item.id">
+                        <router-link :to="'/fengcaiInfo/id/'+item.id">
                         <div class="pic_box">
                             <img :src="item.pic_url" :alt="item.title" />
                         </div>
@@ -63,7 +63,7 @@
                         duration: 2000});
                     return false;
                 }
-                this.$router.push('/home/fengcaiAdd');
+                this.$router.push('/fengcaiAdd');
             },
             getFengcaiList(vm, params){
                 vm.$ajax.post('/fengcai/fengcai_list', params).then(res => {

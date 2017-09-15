@@ -66,7 +66,7 @@
                                 this.$indicator.close();
                                 this.$toast({message: '登陆成功', position: 'bottom', duration: 800});
                                 setTimeout(_=>{
-                                    this.$router.replace('/home/main')
+                                    this.$router.replace('/main')
                                 },500)
 //
                             } else {
@@ -83,7 +83,7 @@
                     }
             },
             nextstep(){
-                this.$router.push('/home/main');
+                this.$router.replace('/main');
             },
             is_login(){
                 let token = this.$localStore.get('token');

@@ -8,7 +8,7 @@
                 infinite-scroll-disabled="loading"
                 infinite-scroll-distance="10">
             <div class="item_list" v-for="item in items" :key="item.id">
-                <router-link :to="'/home/noticeInfo/id/'+item.id">
+                <router-link :to="'/noticeInfo/id/'+item.id">
                     <div class="item_left">
                         <div class="item_left_pic">
                             <img src="../../assets/images/icon100.png" width="44" height="44" alt="" align="middle">

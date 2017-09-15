@@ -64,24 +64,25 @@
                 return {welcome_str, is_login};
             },
             is_index(){
-                if (this.$route.path == '/home/main') {
+                if (this.$route.path == '/main') {
                     return false;
                 }
                 return true;
-            }
+            },
         },
         methods: {
             go_back_url(){
                 this.$router.go(-1);
             },
             signin() {
-                this.$router.replace('/');
+                this.$router.replace('/login');
             },
             logout() {
                 //localStorage清空
                 this.$localStore.clearAll();
-                this.$router.replace('/');
-            }
+                this.$router.replace('/login');
+            },
+
         },
 
         created() {
@@ -113,8 +114,8 @@
             });
         },
         mounted() {
-            console.log(this.$route);
-            //this.$router.push('/home/main');
+            //console.log(this.$route);
+            this.$router.push('/main');
         }
     }
 </script>

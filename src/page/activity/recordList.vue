@@ -17,7 +17,7 @@
                 infinite-scroll-disabled="loading"
                 infinite-scroll-distance="10">
             <div class="item_list" v-for="item in items" :key="item.id">
-                <mt-cell :title="item.record_title" icon="more" is-link :to="'/home/recordInfo/id/'+item.id">
+                <mt-cell :title="item.record_title" icon="more" is-link :to="'/recordInfo/id/'+item.id">
                     <img slot="icon" src="../../assets/images/icon100.png" width="24" height="24">
                 </mt-cell>
             </div>
@@ -26,7 +26,6 @@
         <p style="text-align: center" v-show="isShowTips"> 无数据</p>
         <div style="text-align: center" v-show="isShowRest">
             <br>
-
             <mt-button @click="refreshBt">重试一下</mt-button>
         </div>
 
@@ -96,7 +95,7 @@
 
             },
             paletteBt() {
-                this.$router.push('/home/recordAdd')
+                this.$router.push('/recordAdd');
             },
             refreshBt(){
                 getPagedRecordList(this);

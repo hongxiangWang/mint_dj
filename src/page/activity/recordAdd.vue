@@ -289,7 +289,7 @@
             if (res.data.errno == 0) {
                 vm.$message({message: params.tips, type: 'success'});
                 setTimeout(_ => {
-                    vm.$router.replace('/home/recordList');
+                    vm.$router.replace('/recordList');
                     vm.submitBtn = false;
                 }, 2000);
             } else {

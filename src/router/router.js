@@ -18,7 +18,7 @@ export default [{
         name: 'index'
     },
     {
-        path: '/home',
+        path: '/',
         name: 'home',
         component: home,
         children:[
@@ -76,7 +76,7 @@ export default [{
         ]
     },
     {
-        path: '/',
+        path: '/login',
         component: login,
     },
 ]
