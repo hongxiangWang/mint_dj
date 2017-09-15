@@ -320,4 +320,7 @@
     #upload .mint-field-core {
         max-width: 0;
     }
+    .mint-field .mint-cell-value{
+        background-color: white;
+    }
 </style>

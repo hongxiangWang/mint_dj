@@ -31,20 +31,11 @@
                     username: '',
                     userpwd: ''
                 },
-//                rules2: {
-//                    username: [
-//                        {type: 'string', required: true, trigger: 'blur'},
-//                        {min: 4, max: 15, message: '长度在 4 到 15 个字符', trigger: 'blur'}
-//                    ],
-//                    userpwd: [
-//                        {type: 'string', required: true, trigger: 'blur'}
-//                    ]
-//                },
             }
         },
         methods: {
             submit(formName){
-                    this.$indicator.open({
+                     this.$indicator.open({
                         text: '登陆中...',
                         spinnerType: 'fading-circle'
                     });
@@ -56,7 +47,11 @@
 
                     if(f_username==''||f_userpwd==''){
                         valid=false;
-                        this.$message({message: '用户名密码不能为空', type: 'error'});
+                        this.$toast({message: '用户名密码不能为空', position: 'bottom', duration: 2500});
+                        this.$nextTick(_=>{
+                            this.$indicator.close();
+                        })
+                        return;
                     }else{
                         valid=true;
                     }
@@ -69,16 +64,21 @@
                             if (response.data.errno == 0) {
                                 getAccount(this, response.data.data);
                                 this.$indicator.close();
-                                this.$message({message:'登陆成功，即将跳转',type:'success',duration:1000,onClose(em){
-                                    that.$router.replace('/home/main');
-                                }});
+                                this.$toast({message: '登陆成功', position: 'bottom', duration: 800});
+                                setTimeout(_=>{
+                                    this.$router.replace('/home/main')
+                                },500)
+//
                             } else {
-                                this.$message({message: response.data.errmsg, type: 'error'});
+                                this.$indicator.close();
+                                this.$toast({message: response.data.errmsg, position: 'bottom', duration: 2500});
                             }
                         }).catch(error => {
+                            this.$indicator.close();
                             this.$toast({message: res.data.errmsg, position: 'bottom'});
                         });
                     } else {
+                        this.$indicator.close();
                         return false;
                     }
             },
@@ -97,9 +97,12 @@
 
         },
         mounted(){
-//            if(this.is_login()){
-//                this.$router.replace('/home/main');
-//            }
+            if(this.is_login()){
+                this.$toast({message: '您最近已登录，正在跳转', position: 'bottom', duration: 800});
+                setTimeout(_=>{
+                    this.$router.replace('/home/main')
+                },500)
+            }
         }
     }
     function getAccount(vm, data) {

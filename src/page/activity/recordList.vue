@@ -1,7 +1,7 @@
 <template>
     <div>
         <mt-cell :title="dept_name" class="dept_id">
-            <mt-button size="small" type="primary" @click="resetBt" v-show="dept_name!='选择党支部'">重置</mt-button>
+            <mt-button size="small" @click="resetBt" v-show="dept_name!='选择党支部'">重置</mt-button>
             <mt-button size="small" type="primary" @click="deptBt" style="margin-left: 5px">选择</mt-button>
             <mt-popup
                     style="width: 100%;;bottom: 0px"
@@ -144,7 +144,7 @@
                 res.data.data.data.forEach(v => {
                     vm.items.push(v);
                 });
-                if(res.data.data.data.length==0){
+                if(vm.items==0){
                     vm.isShowTips = true;
                 }else {
                     vm.isShowTips = false;

@@ -156,10 +156,10 @@
                     this.$store.commit('ORGANIZED_PARTY', groupArr);
                     return;
                 }
-                this.$message({message: '数据获取失败,请重试111', type: 'error'})
+                this.$toast({message: '数据获取失败,请重试', position: 'bottom', duration: 2500});
                 console.log('res------', res.data)
             }).catch(err => {
-                this.$message({message: '数据获取失败,请重试222', type: 'error'})
+                this.$toast({message: '数据获取失败,请重试', position: 'bottom', duration: 2500});
                 console.log('err------', err)
             })
 
