@@ -75,7 +75,6 @@
 </script>
 <style>
     .ql-editor{
-        font-size:14px;
         padding:10px 10px;
     }
     .ql-editor p{
