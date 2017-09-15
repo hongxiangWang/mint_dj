@@ -97,9 +97,9 @@
 
         },
         mounted(){
-            if(this.is_login()){
-                this.$router.replace('/home/main');
-            }
+//            if(this.is_login()){
+//                this.$router.replace('/home/main');
+//            }
         }
     }
     function getAccount(vm, data) {
