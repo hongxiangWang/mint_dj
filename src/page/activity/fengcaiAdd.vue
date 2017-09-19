@@ -66,6 +66,8 @@
                         $("#span_" + i + "").remove();
                         this.fengcai_pic_json_array.splice(i, 1);
                         s.splice(i, 1);
+                        //显示上传的+号
+                        $("div.el-upload--picture-card").show();
                     }
                     //本地上传
                     if (file.response == undefined && v == file.url.replace(require('../../value/string').fileread, '').replace(`ctdj/www/static`, `file`)) {
@@ -91,8 +93,8 @@
                         //删除多余的input，只保留一个
                         $("#span_" + i + "").eq(0).nextAll("#span_" + i + "").remove();
                     });
-                    //绑定对象
-
+                    //隐藏上传的+号
+                    $("div.el-upload--picture-card").hide();
                 }
             },
             //处理新增逻辑
