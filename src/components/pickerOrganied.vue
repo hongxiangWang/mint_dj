@@ -110,6 +110,7 @@
         mounted() {
             this.$ajax.post('/department/dept_list_to_tree', {}).then(res => {
                 let groupArr = [];
+                console.log('res-8888888---',res.data)
                 if (res.data.errno == 0) {
                     if (res.data.data.length == 1 && res.data.data[0].id != 1) {
                         if (res.data.data[0].children == undefined) {
@@ -159,7 +160,7 @@
                 this.$toast({message: '数据获取失败,请重试', position: 'bottom', duration: 2500});
                 console.log('res------', res.data)
             }).catch(err => {
-                this.$toast({message: '数据获取失败,请重试', position: 'bottom', duration: 2500});
+                this.$toast({message: '数据获取失败,请重试', position: 'bottom', duration: 500});
                 console.log('err------', err)
             })
 

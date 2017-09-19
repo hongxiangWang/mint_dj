@@ -104,7 +104,8 @@
             this.$ajax.interceptors.response.use(function (res) {
                 //在这里对返回的数据进行处理
                 if (Number(res.data.errno) == 1000) {
-                    vm.$router.replace('/');
+                    vm.$router.replace('/login');
+                    this.$toast({message: '验证已失效，请重新验证', position: 'bottom', duration: 3000})
                     return;
                 }
                 return res;

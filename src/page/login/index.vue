@@ -96,14 +96,6 @@
         computed:{
 
         },
-        mounted(){
-            if(this.is_login()){
-                this.$toast({message: '您最近已登录，正在跳转', position: 'bottom', duration: 800});
-                setTimeout(_=>{
-                    this.$router.replace('/home/main')
-                },500)
-            }
-        }
     }
     function getAccount(vm, data) {
         vm.$localStore.set('token', data.token);
